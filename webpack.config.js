@@ -62,15 +62,3 @@ module.exports = () => {
     }
     return config;
 };
-
-module.exports = () => {
-    if (isProduction) {
-        config.mode = 'production';
-        
-        
-    } else {
-        config.mode = 'development';
-    }
-    return config;
-};
-
