@@ -2,7 +2,6 @@ import * as yup from 'yup';
 import watchState from './view';
 
 const app = () => {
-
   const elements = {
     form: document.querySelector('form'),
     input: document.querySelector('#url-input'),
@@ -15,7 +14,7 @@ const app = () => {
       status: 'filling',
     },
     feeds: [],
-    error: [], 
+    error: [],
   };
 
   const watchedState = watchState(state, elements);
@@ -29,7 +28,7 @@ const app = () => {
       .then(() => null)
       .catch((error) => error.message);
   };
-  
+
   elements.form.addEventListener('submit', (event) => {
     event.preventDefault();
     const links = watchedState.feeds.map((feed) => feed.link);
@@ -47,7 +46,5 @@ const app = () => {
       });
   });
 };
-   
+
 export default app;
-
-

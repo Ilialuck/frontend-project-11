@@ -7,7 +7,7 @@ const renderForm = (state, elements) => {
       elements.input.classList.add('is-invalid');
       elements.feedback.classList.remove('text-success');
       elements.feedback.classList.add('text-danger');
-      elements.feedback.textContent = `It's not a URL`;
+      elements.feedback.textContent = 'It\'s not a URL';
       break;
     case 'added':
       elements.feedback.classList.remove('text-danger');
