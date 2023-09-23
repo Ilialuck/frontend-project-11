@@ -5,4 +5,4 @@
 
 [![linter](https://github.com/Ilialuck/frontend-project-11/workflows/linter/badge.svg)](https://github.com/Ilialuck/frontend-project-11/actions)
 
-[link](frontend-project-11-jet-alpha.vercel.app)
+[link](https://frontend-project-11-jet-alpha.vercel.app/)
