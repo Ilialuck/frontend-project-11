@@ -1,5 +1,8 @@
 import * as yup from 'yup';
+import i18next from 'i18next';
 import watchState from './view';
+import defaultMessage from './locales/defaultMessage';
+import resources from './locales/index';
 
 const app = () => {
   const elements = {
@@ -14,36 +17,44 @@ const app = () => {
       status: 'filling',
     },
     feeds: [],
-    error: [],
+    error: null,
   };
 
-  const watchedState = watchState(state, elements);
+  yup.setLocale(defaultMessage);
 
-  const validateURL = (links, input) => {
-    const schema = yup.object().shape({
-      url: yup.string().url().required().notOneOf(links),
-    });
-    return schema
-      .validate({ url: input })
-      .then(() => null)
-      .catch((error) => error.message);
-  };
+  const i18nextInstance = i18next.createInstance();
+  i18nextInstance.init({
+    lng: 'ru',
+    debug: false,
+    resources,
+  }).then(() => {
+    const watchedState = watchState(state, i18nextInstance, elements);
 
-  elements.form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const links = watchedState.feeds.map((feed) => feed.link);
-    const formData = new FormData(event.target);
-    const input = formData.get('url');
-
-    validateURL(links, input)
-      .then((error) => {
-        if (error) {
-          watchedState.error = error.key;
-          watchedState.form.status = 'inValid';
-        } else {
-          watchedState.form.status = 'added';
-        }
+    const validateURL = (links, input) => {
+      const schema = yup.object().shape({
+        url: yup.string().url().required().notOneOf(links),
       });
+      return schema
+        .validate({ url: input })
+        .then(() => null)
+        .catch((error) => error.message);
+    };
+
+    elements.form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const addedLinks = watchedState.feeds.map((feed) => feed.link);
+      const formData = new FormData(event.target);
+      const inputData = formData.get('url');
+      validateURL(addedLinks, inputData)
+        .then((error) => {
+          if (error) {
+            watchedState.error = error.key;
+            watchedState.form.status = 'inValid';
+          } else {
+            watchedState.form.status = 'added';
+          }
+        });
+    });
   });
 };
 
