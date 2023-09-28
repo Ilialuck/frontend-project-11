@@ -125,4 +125,3 @@ const renderInModal = (state, elements) => {
 export {
   renderForm, renderFeeds, renderPosts, renderInModal,
 };
-
