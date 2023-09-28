@@ -57,6 +57,17 @@ const renderFeeds = (state, elements) => {
   });
 };
 
+const renderButtons = (post, i18next) => {
+  const button = document.createElement('button');
+  button.setAttribute('type', 'button');
+  button.setAttribute('data-id', post.id);
+  button.setAttribute('data-bs-toggle', 'modal');
+  button.setAttribute('data-bs-target', '#modal');
+  button.classList.add('btn', 'btn-outline-primary', 'btn-sm');
+  button.textContent = i18next.t('buttons.view');
+  return button;
+};
+
 const renderPosts = (state, i18next, elements) => {
   elements.postsContainer.innerHTML = '';
   const divContainer = document.createElement('div');
@@ -75,6 +86,7 @@ const renderPosts = (state, i18next, elements) => {
 
   state.posts.forEach((post) => {
     const li = document.createElement('li');
+    const button = renderButtons(post, i18next);
     const a = document.createElement('a');
     li.classList.add(
       'list-group-item',
@@ -96,8 +108,21 @@ const renderPosts = (state, i18next, elements) => {
     }
     a.textContent = post.title;
     li.append(a);
+    li.append(button);
     ul.append(li);
   });
 };
 
-export { renderForm, renderFeeds, renderPosts };
+const renderInModal = (state, elements) => {
+  const viewedPostID = state.uiState.currentPostId;
+  const viewedPost = state.posts.find((post) => post.id === viewedPostID);
+  const modalTitleEl = elements.modalHeader.querySelector('.modal-title');
+  modalTitleEl.textContent = viewedPost.title;
+  elements.modalBody.textContent = viewedPost.description;
+  elements.modalHref.setAttribute('href', viewedPost.link);
+};
+
+export {
+  renderForm, renderFeeds, renderPosts, renderInModal,
+};
+

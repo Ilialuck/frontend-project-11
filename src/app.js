@@ -13,6 +13,9 @@ const app = () => {
     feedback: document.querySelector('.feedback'),
     feedsContainer: document.querySelector('.feeds'),
     postsContainer: document.querySelector('.posts'),
+    modalHeader: document.querySelector('.modal-header'),
+    modalBody: document.querySelector('.modal-body'),
+    modalHref: document.querySelector('.full-article'),
   };
 
   const state = {
