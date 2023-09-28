@@ -86,7 +86,7 @@ const renderPosts = (state, i18next, elements) => {
 
   state.posts.forEach((post) => {
     const li = document.createElement('li');
-    const button = renderButtons(post, i18next);
+    const buttonEl = renderButtons(post, i18next);
     const a = document.createElement('a');
     li.classList.add(
       'list-group-item',
@@ -108,7 +108,7 @@ const renderPosts = (state, i18next, elements) => {
     }
     a.textContent = post.title;
     li.append(a);
-    li.append(button);
+    li.append(buttonEl);
     ul.append(li);
   });
 };
