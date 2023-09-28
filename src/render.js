@@ -57,7 +57,7 @@ const renderFeeds = (state, elements) => {
   });
 };
 
-const renderButtons = (post, i18next) => {
+const createBtn = (post, i18next) => {
   const button = document.createElement('button');
   button.setAttribute('type', 'button');
   button.setAttribute('data-id', post.id);
@@ -86,7 +86,7 @@ const renderPosts = (state, i18next, elements) => {
 
   state.posts.forEach((post) => {
     const li = document.createElement('li');
-    const buttonEl = renderButtons(post, i18next);
+    const buttonEl = createBtn(post, i18next);
     const a = document.createElement('a');
     li.classList.add(
       'list-group-item',
