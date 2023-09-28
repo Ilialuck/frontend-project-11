@@ -3,6 +3,7 @@ import i18next from 'i18next';
 import watchState from './view';
 import defaultMessage from './locales/defaultMessage';
 import resources from './locales/index';
+import { loadRSS, updatePosts } from './helpers';
 
 const app = () => {
   const elements = {
@@ -10,6 +11,8 @@ const app = () => {
     input: document.querySelector('#url-input'),
     button: document.querySelector('button[type="submit"]'),
     feedback: document.querySelector('.feedback'),
+    feedsContainer: document.querySelector('.feeds'),
+    postsContainer: document.querySelector('.posts'),
   };
 
   const state = {
@@ -17,7 +20,13 @@ const app = () => {
       status: 'filling',
     },
     feeds: [],
+    posts: [],
     error: null,
+    uiState: {
+      currentPostId: null,
+      viewedPostIds: new Set(),
+    },
+
   };
 
   yup.setLocale(defaultMessage);
@@ -52,9 +61,21 @@ const app = () => {
             watchedState.form.status = 'inValid';
           } else {
             watchedState.form.status = 'added';
+            loadRSS(watchedState, inputData);
           }
         });
     });
+
+    elements.postsContainer.addEventListener('click', (e) => {
+      const postId = e.target.dataset.id;
+      if (postId) {
+        watchedState.uiState.currentPostId = postId;
+        watchedState.uiState.viewedPostIds.add(postId);
+      }
+    });
+    updatePosts(watchedState);
+  }).catch((error) => {
+    console.error('Error initializing i18nextInstance:', error);
   });
 };
 
