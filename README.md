@@ -18,5 +18,7 @@ RSS — специализированный формат, предназнач�
 ## Установка
 ```
     git clone https://github.com/Ilialuck/frontend-project-11
+```
+```
     make install
 ```
