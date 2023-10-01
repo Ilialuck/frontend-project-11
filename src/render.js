@@ -2,12 +2,14 @@ const renderForm = (state, i18next, elements) => {
   elements.feedback.textContent = '';
   switch (state.form.status) {
     case 'inValid':
+      elements.button.disabled = false;
       elements.input.classList.add('is-invalid');
       elements.feedback.classList.remove('text-success');
       elements.feedback.classList.add('text-danger');
       elements.feedback.textContent = i18next.t(`errors.${state.error}`);
       break;
     case 'sending':
+      elements.button.disabled = true;
       elements.input.classList.remove('is-invalid');
       elements.feedback.classList.remove('text-danger');
       elements.feedback.textContent = i18next.t('status.sending');
@@ -15,6 +17,7 @@ const renderForm = (state, i18next, elements) => {
       elements.input.focus();
       break;
     case 'added':
+      elements.button.disabled = false;
       elements.feedback.classList.remove('text-danger');
       elements.feedback.classList.add('text-success');
       elements.input.classList.remove('is-invalid');

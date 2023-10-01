@@ -3,7 +3,7 @@ import { uniqueId } from 'lodash';
 import parseData from './parser';
 
 const defaultOptions = { timeout: 10000 };
-const timeOut = 3000;
+const timeOut = 1000;
 
 const addProxy = (url) => {
   const baseURL = 'https://allorigins.hexlet.app/get';
