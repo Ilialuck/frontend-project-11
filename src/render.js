@@ -32,7 +32,6 @@ const renderFeeds = (state, elements) => {
   const divTitle = document.createElement('div');
   const ul = document.createElement('ul');
   const h2 = document.createElement('h2');
-
   h2.classList.add('card-title', 'h4');
   h2.textContent = 'Фиды';
   divContainer.classList.add('card', 'border-0');
@@ -40,7 +39,6 @@ const renderFeeds = (state, elements) => {
   divTitle.append(h2);
   ul.classList.add('list-group', 'border-0', 'rounded-0');
   divContainer.append(divTitle, ul);
-  elements.feedsContainer.append(divContainer);
 
   state.feeds.forEach((feed) => {
     const li = document.createElement('li');
@@ -55,6 +53,7 @@ const renderFeeds = (state, elements) => {
     h3.textContent = feed.title;
     ul.prepend(li);
   });
+  elements.feedsContainer.append(divContainer);
 };
 
 const createBtn = (post, i18next) => {
@@ -82,7 +81,6 @@ const renderPosts = (state, i18next, elements) => {
   h2.classList.add('card-title', 'h4');
   h2.textContent = 'Посты';
   divTitle.append(h2);
-  elements.postsContainer.append(divContainer);
 
   state.posts.forEach((post) => {
     const li = document.createElement('li');
@@ -111,6 +109,7 @@ const renderPosts = (state, i18next, elements) => {
     li.append(buttonEl);
     ul.append(li);
   });
+  elements.postsContainer.append(divContainer);
 };
 
 const renderInModal = (state, elements) => {
