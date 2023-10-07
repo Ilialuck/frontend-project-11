@@ -10,13 +10,16 @@ const watchState = (state, i18nextInstance, elements) => {
         renderForm(watchedState, i18nextInstance, elements);
         break;
       case 'feeds':
-        renderFeeds(state, elements);
+        renderFeeds(state, i18nextInstance, elements);
         break;
       case 'posts':
         renderPosts(state, i18nextInstance, elements);
         break;
-      case 'uiState.currentPostId' || 'uiState.viewedPostIds':
+      case 'uiState.currentPostId':
         renderInModal(watchedState, elements);
+        break;
+      case 'uiState.viewedPostIds':
+        renderPosts(state, i18nextInstance, elements);
         break;
       default:
         break;

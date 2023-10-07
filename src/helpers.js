@@ -3,7 +3,7 @@ import { uniqueId } from 'lodash';
 import parseData from './parser';
 
 const defaultOptions = { timeout: 10000 };
-const timeOut = 1000;
+const timeOut = 5000;
 
 const addProxy = (url) => {
   const baseURL = 'https://allorigins.hexlet.app/get';
@@ -62,7 +62,9 @@ const updatePosts = (watchedState) => {
       const displayedPostLinks = postsWithCurrentId.map((post) => post.link);
       const newPosts = posts.filter((post) => !displayedPostLinks.includes(post.link));
       addId(newPosts, feed.id);
-      watchedState.posts.unshift(...newPosts);
+      if (newPosts.length !== 0) {
+        watchedState.posts.unshift(...newPosts);
+      }
     })
     .catch((error) => {
       console.error(`Error fetching data from feed ${feed.id}:`, error);

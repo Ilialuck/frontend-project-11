@@ -76,6 +76,7 @@ const app = () => {
         watchedState.uiState.viewedPostIds.add(postId);
       }
     });
+
     updatePosts(watchedState);
   }).catch((error) => {
     console.error('Error initializing i18nextInstance:', error);

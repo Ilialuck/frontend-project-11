@@ -29,14 +29,14 @@ const renderForm = (state, i18next, elements) => {
       break;
   }
 };
-const renderFeeds = (state, elements) => {
+const renderFeeds = (state, i18next, elements) => {
   elements.feedsContainer.innerHTML = '';
   const divContainer = document.createElement('div');
   const divTitle = document.createElement('div');
   const ul = document.createElement('ul');
   const h2 = document.createElement('h2');
   h2.classList.add('card-title', 'h4');
-  h2.textContent = 'Фиды';
+  h2.textContent = i18next.t('parts.feeds');
   divContainer.classList.add('card', 'border-0');
   divTitle.classList.add('card-body');
   divTitle.append(h2);
@@ -82,7 +82,7 @@ const renderPosts = (state, i18next, elements) => {
   ul.classList.add('list-group', 'border-0', 'rounded-0');
   divContainer.append(divTitle, ul);
   h2.classList.add('card-title', 'h4');
-  h2.textContent = 'Посты';
+  h2.textContent = i18next.t('parts.posts');
   divTitle.append(h2);
 
   state.posts.forEach((post) => {

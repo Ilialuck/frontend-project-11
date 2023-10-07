@@ -15,5 +15,9 @@ export default {
     buttons: {
       view: 'Просмотр',
     },
+    parts: {
+      feeds: 'Фиды',
+      posts: 'Посты',
+    },
   },
 };
