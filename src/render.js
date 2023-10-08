@@ -30,7 +30,6 @@ const renderForm = (state, i18next, elements) => {
   }
 };
 const renderFeeds = (state, i18next, elements) => {
-  elements.feedsContainer.innerHTML = '';
   const divContainer = document.createElement('div');
   const divTitle = document.createElement('div');
   const ul = document.createElement('ul');
@@ -56,7 +55,8 @@ const renderFeeds = (state, i18next, elements) => {
     h3.textContent = feed.title;
     ul.prepend(li);
   });
-  elements.feedsContainer.append(divContainer);
+
+  elements.feedsContainer.replaceChildren(divContainer);
 };
 
 const createBtn = (post, i18next) => {
@@ -71,7 +71,6 @@ const createBtn = (post, i18next) => {
 };
 
 const renderPosts = (state, i18next, elements) => {
-  elements.postsContainer.innerHTML = '';
   const divContainer = document.createElement('div');
   const divTitle = document.createElement('div');
   const ul = document.createElement('ul');
@@ -112,7 +111,8 @@ const renderPosts = (state, i18next, elements) => {
     li.append(buttonEl);
     ul.append(li);
   });
-  elements.postsContainer.append(divContainer);
+
+  elements.postsContainer.replaceChildren(divContainer);
 };
 
 const renderInModal = (state, elements) => {
